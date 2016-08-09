@@ -4,6 +4,7 @@ Latest Apache, PHP7.0 and a couple of PHP7.0 modules including MongoDB and MySQL
 ## Usage:
 #### One-Time Testing: 
 - docker run --rm -p **OutgoingHTTP**:80 -p **OutgoingHTTPS**:443 -v **LocalHTMLDirectory**:/var/www/html:ro zharry/apache-php
+
 #### Background:
 - docker run -p **OutgoingHTTP**:80 -p **OutgoingHTTPS**:443 -v **LocalHTMLDirectory**:/var/www/html:ro -d zharry/apache-php
 
