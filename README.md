@@ -2,7 +2,10 @@
 Latest Apache, PHP7.0 and a couple of PHP7.0 modules including MongoDB and MySQL drivers. Dockerfile for image
 
 ## Usage:
-docker run --rm -p **_Outgoing HTTP_**:80 -p **_Outgoing HTTPS_**:443 -v **_Local HTML Directory_**:/var/www/html:ro zharry/apache-php
+#### One-Time Testing: 
+- docker run --rm -p **OutgoingHTTP**:80 -p **OutgoingHTTPS**:443 -v **LocalHTMLDirectory**:/var/www/html:ro zharry/apache-php
+#### Background:
+- docker run -p **OutgoingHTTP**:80 -p **OutgoingHTTPS**:443 -v **LocalHTMLDirectory**:/var/www/html:ro -d zharry/apache-php
 
 ### Base Image:
 - ubuntu:latest (16.04)
