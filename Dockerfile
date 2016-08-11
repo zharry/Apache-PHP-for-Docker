@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 MAINTAINER Harry Zhang
 
-RUN apt-get update
-RUN apt-get -y install \
+RUN apt-get update && \
+    apt-get -y install \
         apache2 && \
     apt-get -y install \
         php7.0 \
@@ -23,12 +23,12 @@ RUN apt-get -y install \
         libcurl4-openssl-dev \
         pkg-config \
         libssl-dev \
-        libsslcommon2-dev
+        libsslcommon2-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN pecl install mongodb
 RUN /bin/bash -c "echo extension=mongodb.so >> /etc/php/7.0/apache2/php.ini"
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
