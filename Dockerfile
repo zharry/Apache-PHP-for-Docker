@@ -1,13 +1,14 @@
 FROM ubuntu:latest
-MAINTAINER Harry Zhang
+MAINTAINER <Harry Zhang : zh.harry@yahoo.ca>
 
+# Installs necesseary packages
 RUN apt-get update && \
     apt-get -y install \
         apache2 && \
     apt-get -y install \
         php7.0 \
         libapache2-mod-php7.0 && \
-    apt-get -y install 
+    apt-get -y install \
         php7.0-curl \
         php7.0-dev \
         php7.0-gd \
@@ -27,17 +28,22 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Installs and Enables PHP MongoDB driver
 RUN pecl install mongodb
 RUN /bin/bash -c "echo extension=mongodb.so >> /etc/php/7.0/apache2/php.ini"
 
+# Set Apache Environment variables
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
+# Enables SSL
 RUN /usr/sbin/a2ensite default-ssl
 RUN /usr/sbin/a2enmod ssl
 
+# Listen to connections on 80 and 443
 EXPOSE 80
 EXPOSE 443
 
+# Start Apache
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
