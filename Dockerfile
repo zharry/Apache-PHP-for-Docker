@@ -37,9 +37,13 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
-# Enables SSL
-RUN /usr/sbin/a2ensite default-ssl
-RUN /usr/sbin/a2enmod ssl
+# Enables Webpages
+RUN /usr/sbin/a2ensite default-ssl && \
+    /usr/sbin/a2ensite default
+
+# Enables Apache2 Modules
+RUN /usr/sbin/a2enmod ssl && \
+    /usr/sbin/a2enmod rewrite
 
 # Listen to connections on 80 and 443
 EXPOSE 80
