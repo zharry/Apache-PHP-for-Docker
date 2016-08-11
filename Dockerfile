@@ -38,8 +38,7 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
 # Enables Webpages
-RUN /usr/sbin/a2ensite default-ssl && \
-    /usr/sbin/a2ensite default
+RUN /usr/sbin/a2ensite default-ssl
 
 # Enables Apache2 Modules
 RUN /usr/sbin/a2enmod ssl && \
