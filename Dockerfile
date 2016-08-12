@@ -29,19 +29,22 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Installs and Enables PHP MongoDB driver
-RUN pecl install mongodb
-RUN /bin/bash -c "echo extension=mongodb.so >> /etc/php/7.0/apache2/php.ini"
+RUN pecl install mongodb && \
+    /bin/bash -c "echo extension=mongodb.so >> /etc/php/7.0/apache2/php.ini"
 
 # Set Apache Environment variables
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
+# Copy modified apache2.conf into the configuration folder
+ADD apache2.conf /etc/apache2/apache2.conf
+
 # Enables Webpages
-RUN /usr/sbin/a2ensite default-ssl
+RUN /usr/sbin/a2ensite default-ssl && \
 
 # Enables Apache2 Modules
-RUN /usr/sbin/a2enmod ssl && \
+    /usr/sbin/a2enmod ssl && \
     /usr/sbin/a2enmod rewrite
 
 # Listen to connections on 80 and 443
