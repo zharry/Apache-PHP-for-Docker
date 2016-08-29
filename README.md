@@ -30,4 +30,3 @@ Latest Apache, PHP7.0 and a couple of PHP7.0 modules including MongoDB and MySQL
 ### Ports:
 - 80 for HTTP
 - 443 for HTTPS
- 
